@@ -1,6 +1,6 @@
-footer {
-  text-align: center;
-  padding: 3px;
-  background-color: DarkSalmon;
-  color: white;
+.footer {
+  background-color: #e98d6b;
+  padding: 1rem;
+  text-align: right;
+  font-weight: bold;
 }

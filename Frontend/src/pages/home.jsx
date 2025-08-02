@@ -1,51 +1,47 @@
 import React, { useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
-import ListItemButton from "@mui/material/ListItemButton";
-import { drawerList } from "../assets/drawerList";
-
+import "../styles/homeStyle.css";
 
 export const Home = () => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [inputTask, setInputTask] = useState();
+  const [allTask, setAllTask] = useState([]);
 
-  const toggleDrawer = (open) => {
-    setDrawerOpen(open);
+  const handleNewTask = (e) => {
+    const { value } = e.target;
+    setInputTask(value);
   };
+  const handleAddTask = (e) => {
+    e.preventDefault();
 
-  const drawerLists = (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={() => toggleDrawer(false)}
-    >
-      <List>
-        {drawerList.map((listItems, index) => {
-          return (
-            <ListItem key={index}>
-              <ListItemButton>
-                <ListItemText primary={listItems} />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
-      </List>
-    </Box>
-  );
+    //take all task in array
+    setAllTask((prev) => [...prev, inputTask]);
+    console.log("Task Added :", inputTask);
+
+    //clear input field after adding  newTask
+    setInputTask("");
+  };
 
   return (
     <>
       <h1> To Do Application</h1>
-      <IconButton onClick={() => toggleDrawer(true)}>
-        <MenuIcon />
-      </IconButton>
-      <Drawer open={isDrawerOpen} onClose={() => toggleDrawer(false)}>
-        {drawerLists}
-      </Drawer>
+      <div className="inputBox">
+        <input
+          type="text"
+          placeholder="Add New Task"
+          required
+          value={inputTask}
+          onChange={handleNewTask}
+        ></input>
+        <button type="submit" onClick={handleAddTask} className="addTaskBtn">
+          Add Task
+        </button>
+      </div>
+      <div className="taskList">
+        <ul>
+          {allTask.map((task, index) => {
+            return <li className="listedTask" key={index}>{task}</li>;
+          })}
+        </ul>
+      </div>
     </>
   );
 };

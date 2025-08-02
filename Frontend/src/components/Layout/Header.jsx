@@ -7,13 +7,13 @@ import About from "../../pages/about";
 export const Header = () => {
   return (
     <>
-      <div class="topnav">
-        <NavLink to="/" class="active">
+      <header className="header">
+        <NavLink to="/" className="active">
           Home
         </NavLink>
 
         <NavLink to="/about">About</NavLink>
-      </div>
+      </header>
     </>
   );
 };

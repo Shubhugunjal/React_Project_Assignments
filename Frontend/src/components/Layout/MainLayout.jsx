@@ -9,8 +9,8 @@ export const MainLayout = () => {
   return (
     <>
       <Header />
-      <Outlet /> 
-      <Footer />
+      <Outlet />
+      {/* <Footer /> */}
     </>
   );
 };
