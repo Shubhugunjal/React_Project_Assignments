@@ -4,7 +4,7 @@ import { Home } from "./pages/home";
 import { RegistrationForm } from "./pages/registration";
 import { Login } from "./pages/login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { MainLayout } from "./components/Layout/MainLayout";
+import { MainLayout } from "./components/MainLayout";
 import About from "./pages/about";
 
 function App() {

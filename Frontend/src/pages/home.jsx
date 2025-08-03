@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import "../styles/homeStyle.css";
+import { EditOption } from "../components/EditOption";
 
 export const Home = () => {
   const [inputTask, setInputTask] = useState();
   const [allTask, setAllTask] = useState([]);
 
+  //handles the new task
   const handleNewTask = (e) => {
     const { value } = e.target;
     setInputTask(value);
   };
+
+  //handles the Task after AddTask button clicked
   const handleAddTask = (e) => {
     e.preventDefault();
 
@@ -18,6 +22,21 @@ export const Home = () => {
 
     //clear input field after adding  newTask
     setInputTask("");
+  };
+
+  //handles the Update Task
+  const handleUpdateTask = (editTask, index) => {
+    const editedTask = [...allTask];
+    editedTask[index] = editTask;
+    setAllTask(editedTask);
+  };
+
+  //handle Delete Task
+  const handleDeleteTask = (indexTobeDelete) => {
+    const newArrayAfterDeleteTask = allTask.filter(
+      (_, index) => index !== indexTobeDelete
+    );
+    setAllTask(newArrayAfterDeleteTask);
   };
 
   return (
@@ -38,7 +57,16 @@ export const Home = () => {
       <div className="taskList">
         <ul>
           {allTask.map((task, index) => {
-            return <li className="listedTask" key={index}>{task}</li>;
+            return (
+              <li className="listedTask" key={index}>
+                <EditOption
+                  task={task}
+                  index={index}
+                  onUpdate={handleUpdateTask}
+                  onDelete={handleDeleteTask}
+                />
+              </li>
+            );
           })}
         </ul>
       </div>
