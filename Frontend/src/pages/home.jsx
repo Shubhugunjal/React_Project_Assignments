@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/homeStyle.css";
 import { EditOption } from "../components/EditOption";
 
+
 export const Home = () => {
   const [inputTask, setInputTask] = useState();
   const [allTask, setAllTask] = useState([]);
@@ -59,6 +60,7 @@ export const Home = () => {
           {allTask.map((task, index) => {
             return (
               <li className="listedTask" key={index}>
+              
                 <EditOption
                   task={task}
                   index={index}

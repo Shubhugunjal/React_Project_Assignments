@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Checkbox from "@mui/material/Checkbox";
 
 export const EditOption = ({ task, index, onUpdate, onDelete }) => {
   const [valueToBeEdited, setValueToBeEdited] = useState(task);
@@ -26,7 +27,7 @@ export const EditOption = ({ task, index, onUpdate, onDelete }) => {
   //Do the Delete Functionality
   const handleDeleteValue = () => {
     onDelete(index);
-     console.log("task is Deleted:", index,valueToBeEdited);
+    console.log("task is Deleted:", index, valueToBeEdited);
   };
 
   return isEditing ? (
@@ -36,6 +37,7 @@ export const EditOption = ({ task, index, onUpdate, onDelete }) => {
     </>
   ) : (
     <>
+      <Checkbox defaultChecked/>
       {task}
       <EditIcon
         onClick={handleEditValue}
